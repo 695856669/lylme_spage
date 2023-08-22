@@ -243,8 +243,21 @@ $dbconfig=array(
 				<div class="list-group-item">
 					<a href="?do=4" onclick="if(!confirm(\'全新安装将会清空所有数据，是否继续？\')){return false;}" class="btn btn-block btn-warning">强制全新安装</a>
 				</div>';
-		}else
+		}else{
 			echo '<div class="alert alert-danger">保存失败，请确保网站根目录有写入权限<hr/><a href="javascript:history.back(-1)"><< 返回上一页</a></div>';
+
+			if(mysqli_query($con, "select * from lylme_config where 1")==FALSE)
+				echo '<p align="right"><a class="btn btn-primary btn-block" href="?do=4">创建数据表>></a></p>';
+			else
+				echo '<div class="list-group-item list-group-item-info">系统检测到你已安装过六零导航页</div>
+				<div class="list-group-item">
+					<a href="?do=6" class="btn btn-block btn-info">跳过安装</a>
+				</div>
+				<div class="list-group-item">
+					<a href="?do=4" onclick="if(!confirm(\'全新安装将会清空所有数据，是否继续？\')){return false;}" class="btn btn-block btn-warning">强制全新安装</a>
+				</div>';
+			
+		}
 	}
 }
 ?>
